@@ -14,10 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
-      with:
-        name: inem/ruby-2.5.1-node-10-phraseapp-1.16.1
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        registry: https://registry.hub.docker.com
+    - name: Build the Docker image
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker build . --file Dockerfile --tag ruby-node-phraseapp:gh
+        docker push inem/ruby-node-phraseapp:gh
+      # https://registry.hub.docker.com
