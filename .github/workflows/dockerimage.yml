@@ -17,6 +17,6 @@ jobs:
     - name: Build the Docker image
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker build . --file Dockerfile --tag inem/ruby-node-phraseapp:gh
-        docker push inem/ruby-node-phraseapp:gh
+        docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/ruby-node-phraseapp:gh
+        docker push ${{ secrets.DOCKER_USERNAME }}/ruby-node-phraseapp:gh
       # https://registry.hub.docker.com
